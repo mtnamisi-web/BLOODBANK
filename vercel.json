@@ -1,4 +1,4 @@
 {
-  "version": 2,
-  "public": "bloodbank/src/main/resources/static"
+  "$schema": "openapi.vercel.sh/vercel.json",
+  "outputDirectory": "bloodbank/src/main/resources/static"
 }
