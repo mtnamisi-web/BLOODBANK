@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hospital Dashboard | Blood Bank</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/app.css">
+  <script src="/app.js" defer></script>
+</head>
+<body data-page="hospital">
+  <header id="site-header" class="site-header"></header>
+  <main>
+    <h1>Hospital dashboard</h1>
+    <div id="accessDenied" class="card hide">
+      <p>Please sign in with a hospital account to submit and track blood requests.</p>
+      <a class="button primary" href="/account.html">Go to account</a>
+    </div>
+    <div id="protectedContent">
+      <p class="sub">Submit a request with the required component, group, quantity, and urgency. Confirm supply directly with blood-bank staff.</p>
+      <form id="requestForm" class="card">
+        <h2>Request blood</h2>
+        <div class="form-grid">
+          <label>Patient name<input name="patientName" required></label>
+          <label>Hospital<input name="hospitalName" required></label>
+        </div>
+        <div class="form-grid">
+          <label>City<input name="hospitalCity"></label>
+          <label>Units needed<input name="unitsNeeded" type="number" min="1" value="1" required></label>
+        </div>
+        <div class="form-grid">
+          <label>Blood group<select name="bloodGroup" class="gsel"></select></label>
+          <label>Component<select name="componentType" class="comp"></select></label>
+        </div>
+        <label>Urgency<select name="urgency"><option>Normal</option><option>Urgent</option><option>Critical</option></select></label>
+        <button class="primary" type="submit">Submit request</button>
+        <div id="requestMsg" class="msg" role="status"></div>
+      </form>
+      <section class="section-heading">
+        <h2>Your requests</h2>
+        <div id="requestList" class="card" aria-live="polite"></div>
+      </section>
+    </div>
+  </main>
+  <footer class="footer">Urgent clinical needs should also be communicated through your established emergency blood-bank channels.</footer>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Account | Blood Bank</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/app.css">
+  <script src="/app.js" defer></script>
+</head>
+<body data-page="account">
+  <header id="site-header" class="site-header"></header>
+  <main>
+    <h1>Your account</h1>
+    <p class="sub">Sign in to manage donations or hospital requests. New accounts can register as donors or hospitals.</p>
+    <div id="accountInfo" class="card section-heading"></div>
+    <div class="feature-grid">
+      <form id="login" class="card">
+        <h2>Sign in</h2>
+        <label>Email<input name="email" type="email" autocomplete="username" required></label>
+        <label>Password<input name="password" type="password" autocomplete="current-password" required></label>
+        <button class="primary" type="submit">Sign in</button>
+        <div id="loginMsg" class="msg" role="status"></div>
+      </form>
+      <form id="register" class="card">
+        <h2>Create account</h2>
+        <label>Full name<input name="fullName" autocomplete="name" required></label>
+        <label>Email<input name="email" type="email" autocomplete="email" required></label>
+        <label>Password (at least 8 characters)<input name="password" type="password" minlength="8" autocomplete="new-password" required></label>
+        <div class="form-grid">
+          <label>Account type<select name="role"><option value="donor">Donor</option><option value="hospital">Hospital</option></select></label>
+          <label>Blood group<select name="bloodGroup" class="gsel"></select></label>
+        </div>
+        <div class="form-grid">
+          <label>City<input name="city" autocomplete="address-level2"></label>
+          <label>Phone<input name="phone" type="tel" autocomplete="tel"></label>
+        </div>
+        <label>Date of birth<input name="dateOfBirth" type="date"></label>
+        <button class="primary" type="submit">Create account</button>
+        <div id="regMsg" class="msg" role="status"></div>
+      </form>
+    </div>
+    <p class="notice section-heading">Do not register an administrator through this page. Admin access must be provisioned by the system owner.</p>
+  </main>
+  <footer class="footer">Use a unique password. Do not share account credentials.</footer>
+</body>
+</html>

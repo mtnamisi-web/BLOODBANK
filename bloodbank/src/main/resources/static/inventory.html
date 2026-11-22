@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Live Inventory | Blood Bank</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/app.css">
+  <script src="/app.js" defer></script>
+</head>
+<body data-page="inventory">
+  <header id="site-header" class="site-header"></header>
+  <main>
+    <h1>Live blood inventory</h1>
+    <p class="sub">Select a group to view component totals. <span class="live-indicator" data-live><i></i><span data-live-text>Connecting to live updates</span></span></p>
+    <div id="tanks" class="tanks" aria-live="polite"></div>
+    <section class="card section-heading" aria-live="polite">
+      <h2>Compatibility overview</h2>
+      <p id="result" class="sub">Select a blood group above. This overview is informational and does not replace professional crossmatching.</p>
+    </section>
+    <p class="notice">Displayed quantities may change. Hospitals should verify current stock and patient compatibility directly with qualified blood-bank staff before making clinical decisions.</p>
+  </main>
+  <footer class="footer">Inventory is refreshed from the connected blood-bank database and pushed to open pages in real time.</footer>
+</body>
+</html>

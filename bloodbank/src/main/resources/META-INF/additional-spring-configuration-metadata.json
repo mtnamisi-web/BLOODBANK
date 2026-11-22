@@ -1,0 +1,14 @@
+{
+  "properties": [
+    {
+      "name": "app.jwt.secret",
+      "type": "java.lang.String",
+      "description": "Secret key used to sign authentication tokens."
+    },
+    {
+      "name": "app.jwt.hours",
+      "type": "java.lang.Long",
+      "description": "Lifetime of an authentication token in hours."
+    }
+  ]
+}

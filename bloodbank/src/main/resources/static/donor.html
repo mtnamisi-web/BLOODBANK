@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Donor Dashboard | Blood Bank</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/app.css">
+  <script src="/app.js" defer></script>
+</head>
+<body data-page="donor">
+  <header id="site-header" class="site-header"></header>
+  <main>
+    <h1>Donor dashboard</h1>
+    <div id="accessDenied" class="card hide">
+      <p>Please sign in with a donor account to book and view donation appointments.</p>
+      <a class="button primary" href="/account.html">Go to account</a>
+    </div>
+    <div id="protectedContent">
+      <p class="sub">Request a donation appointment and track its status. Staff confirm eligibility at the donation centre.</p>
+      <form id="appointmentForm" class="card">
+        <h2>Book a donation</h2>
+        <label>Donation centre<input name="centerName" required></label>
+        <div class="form-grid">
+          <label>Date and time<input name="appointmentDate" type="datetime-local" required></label>
+          <label>Weight (kg)<input name="weightKg" type="number" min="0" step="0.1" required></label>
+        </div>
+        <label>Hemoglobin (g/dL, optional)<input name="hemoglobinLevel" type="number" min="0" step="0.1"></label>
+        <button class="primary" type="submit">Request appointment</button>
+        <div id="apptMsg" class="msg" role="status"></div>
+      </form>
+      <section class="section-heading">
+        <h2>Your appointments</h2>
+        <div id="apptList" class="card" aria-live="polite"></div>
+      </section>
+    </div>
+  </main>
+  <footer class="footer">Appointment requests are not confirmation of medical eligibility. Follow instructions from qualified staff.</footer>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Dashboard | Blood Bank</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/app.css">
+  <script src="/app.js" defer></script>
+</head>
+<body data-page="admin">
+  <header id="site-header" class="site-header"></header>
+  <main>
+    <h1>Blood-bank administration</h1>
+    <div id="accessDenied" class="card hide">
+      <p>This page is restricted to authorized administrators.</p>
+      <a class="button primary" href="/account.html">Go to account</a>
+    </div>
+    <div id="protectedContent">
+      <p id="adminError" class="msg err" role="status"></p>
+      <section class="section-heading">
+        <h2>Incoming hospital requests</h2>
+        <div id="adminRequests" class="card"></div>
+      </section>
+      <section class="section-heading">
+        <h2>Donation appointments</h2>
+        <div id="adminAppointments" class="card"></div>
+      </section>
+      <div class="feature-grid section-heading">
+        <section class="card">
+          <h2>Add blood inventory</h2>
+          <form id="bagForm">
+            <div class="form-grid">
+              <label>Blood group<select name="bloodGroup" class="gsel"></select></label>
+              <label>Component<select name="componentType" class="comp"></select></label>
+            </div>
+            <div class="form-grid">
+              <label>Donor ID (optional)<input name="donorId" type="number" min="1"></label>
+              <label>Storage location<input name="storageLocation"></label>
+            </div>
+            <button class="primary" type="submit">Add blood bag</button>
+            <div id="bagMsg" class="msg" role="status"></div>
+          </form>
+        </section>
+        <section class="card">
+          <h2>Publish blood drive</h2>
+          <form id="driveForm">
+            <label>Title<input name="title" required></label>
+            <label>Venue address<input name="venueAddress" required></label>
+            <div class="form-grid">
+              <label>City<input name="city"></label>
+              <label>Contact phone<input name="contactPhone" type="tel"></label>
+            </div>
+            <div class="form-grid">
+              <label>Date<input name="driveDate" type="date" required></label>
+              <label>Start time<input name="startTime" type="time" required></label>
+            </div>
+            <label>End time<input name="endTime" type="time" required></label>
+            <button class="primary" type="submit">Publish drive</button>
+            <div id="driveMsg" class="msg" role="status"></div>
+          </form>
+        </section>
+      </div>
+      <section class="section-heading">
+        <h2>Inventory status</h2>
+        <div id="adminInventory" class="card"></div>
+      </section>
+      <section class="section-heading">
+        <h2>Published upcoming drives</h2>
+        <div id="adminUpcomingDrives" class="drives"></div>
+      </section>
+    </div>
+  </main>
+  <footer class="footer">Only authorized staff should manage inventory and requests. Verify every status change against operational procedures.</footer>
+</body>
+</html>

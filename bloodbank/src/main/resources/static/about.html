@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How It Works | Blood Bank</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/app.css">
+  <script src="/app.js" defer></script>
+</head>
+<body data-page="about">
+  <header id="site-header" class="site-header"></header>
+  <main>
+    <h1>How this blood-bank system works</h1>
+    <p class="sub">A coordination tool for donors, hospitals, and authorized blood-bank staff.</p>
+    <div class="feature-grid">
+      <section class="card">
+        <h2>1. Record inventory</h2>
+        <p>Authorized administrators add collected blood bags, component types, locations, and status. Inventory summaries update for connected visitors.</p>
+      </section>
+      <section class="card">
+        <h2>2. Coordinate requests</h2>
+        <p>Hospital accounts submit the requested group, component, quantity, and urgency. Staff review requests and update their status.</p>
+      </section>
+      <section class="card">
+        <h2>3. Schedule donors</h2>
+        <p>Donors request appointments and review their appointment status. Qualified staff make final eligibility decisions in person.</p>
+      </section>
+      <section class="card">
+        <h2>4. Share live updates</h2>
+        <p>Connected pages receive stock and request updates over a WebSocket connection. A disconnected page attempts to reconnect automatically.</p>
+      </section>
+    </div>
+    <section class="card section-heading">
+      <h2>Important operational limitations</h2>
+      <ul class="info-list">
+        <li>Stock counts are only as accurate as staff-entered records; verify critical availability directly.</li>
+        <li>Compatibility summaries are informational. Clinical crossmatching and transfusion decisions must be made by qualified professionals.</li>
+        <li>Do not use this sample application as a substitute for an approved clinical, emergency, or regulatory system.</li>
+        <li>Before internet deployment, configure HTTPS, secure secrets, backups, audit trails, monitoring, and institution-approved privacy controls.</li>
+      </ul>
+    </section>
+  </main>
+  <footer class="footer">For emergencies, use established local emergency and blood-bank communication channels.</footer>
+</body>
+</html>
