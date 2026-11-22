@@ -1,4 +1,5 @@
 {
   "$schema": "openapi.vercel.sh/vercel.json",
-  "outputDirectory": "bloodbank/src/main/resources/static"
+  "buildCommand": "mkdir -p public && cp -r bloodbank/src/main/resources/static/. public/",
+  "outputDirectory": "public"
 }
