@@ -3,7 +3,7 @@
   "buildCommand": "mkdir -p public && cp -r bloodbank/src/main/resources/static/. public/",
   "outputDirectory": "public",
   "rewrites": [
-    { "source": "/api/:path*", "destination": "https://soon-strap-munich-lake.trycloudflare.com/api/:path*" },
-    { "source": "/ws", "destination": "https://soon-strap-munich-lake.trycloudflare.com/ws" }
+    { "source": "/api/:path*", "destination": "https://tall-asthma-galleries-alpha.trycloudflare.com/api/:path*" },
+    { "source": "/ws", "destination": "https://tall-asthma-galleries-alpha.trycloudflare.com/ws" }
   ]
 }
