@@ -3,6 +3,6 @@
   "buildCommand": "mkdir -p public && cp -r bloodbank/src/main/resources/static/. public/",
   "outputDirectory": "public",
   "rewrites": [
-    { "source": "/api/:path*", "destination": "https://mitsubishi-soil-regression-occurrence.trycloudflare.com/api/:path*" }
+    { "source": "/api/:path*", "destination": "https://mandate-italia-headed-dynamic.trycloudflare.com/api/:path*" }
   ]
 }
