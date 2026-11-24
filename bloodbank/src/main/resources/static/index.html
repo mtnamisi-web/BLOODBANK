@@ -22,6 +22,7 @@ nav b{font-weight:800;font-size:18px;color:var(--maroon)}
 h2{font-size:22px;margin:44px 0 6px;color:var(--maroon)}p.sub{margin:0 0 16px;color:var(--mute)}
 button,input,select{font:inherit;color:inherit}
 button{border:1.5px solid var(--red);background:transparent;color:var(--red);border-radius:8px;padding:8px 14px;cursor:pointer;font-weight:600}
+button.link{border:0;background:none;padding:0;color:var(--maroon);font-size:13px;text-decoration:underline}button.link:hover{background:none;color:var(--red)}
 button:hover{background:#fee2e2}button.primary{background:var(--red);color:#fff}button.primary:hover{background:var(--maroon)}
 .hero button{border-color:#fff;color:#fff}.hero button.light{background:#fff;color:var(--maroon)}.hero button:hover{background:rgba(255,255,255,.2)}.hero button.light:hover{background:#ffe4e6}
 :focus-visible{outline:3px solid var(--maroon);outline-offset:2px}
@@ -82,7 +83,16 @@ table{border-collapse:collapse;width:100%;font-size:14px;display:block;overflow-
  <form id="login" class="card"><strong>Sign in</strong>
   <label>Email<input name="email" type="email" required></label>
   <label>Password<input name="password" type="password" required></label>
-  <button class="primary">Sign in</button><div class="msg" id="loginMsg"></div></form>
+  <button class="primary">Sign in</button>
+  <button type="button" class="link" id="showForgot">Forgot password?</button>
+  <div class="msg" id="loginMsg"></div></form>
+ <form id="forgot" class="card hide"><strong>Reset password</strong>
+  <label>Email<input name="email" type="email" required></label>
+  <label>Reset word<input name="resetWord" required></label>
+  <label>New password (8+ characters)<input name="newPassword" type="password" minlength="8" required></label>
+  <button class="primary">Reset password</button>
+  <button type="button" class="link" id="showLogin">Back to sign in</button>
+  <div class="msg" id="forgotMsg"></div></form>
  <form id="reg" class="card"><strong>Create account</strong>
   <label>Full name<input name="fullName" required></label>
   <label>Email<input name="email" type="email" required></label>
@@ -162,6 +172,9 @@ function view(){$('#guest').classList.toggle('hide',!!S);$('#out').classList.tog
 const enter=d=>{S=d;localStorage.setItem('bb',JSON.stringify(d));view()};
 $('#out').onclick=()=>{S=null;localStorage.removeItem('bb');view()};
 $('#login').onsubmit=async e=>{e.preventDefault();try{enter(await api('POST','/api/auth/login',form(e.target)))}catch(x){msg('#loginMsg',x.message)}};
+$('#showForgot').onclick=()=>{$('#login').classList.add('hide');$('#forgot').classList.remove('hide');$('#forgotMsg').textContent=''};
+$('#showLogin').onclick=()=>{$('#forgot').classList.add('hide');$('#login').classList.remove('hide');$('#loginMsg').textContent=''};
+$('#forgot').onsubmit=async e=>{e.preventDefault();try{const d=await api('POST','/api/auth/forgot-password',form(e.target));msg('#forgotMsg',d.message,1);e.target.reset()}catch(x){msg('#forgotMsg',x.message)}};
 $('#reg').onsubmit=async e=>{e.preventDefault();try{enter(await api('POST','/api/auth/register',form(e.target)))}catch(x){msg('#regMsg',x.message)}};
 $('#appt').onsubmit=async e=>{e.preventDefault();try{await api('POST','/api/appointments',form(e.target));msg('#apptMsg','Appointment booked.',1);e.target.reset();loadAppts()}catch(x){msg('#apptMsg',x.message)}};
 $('#req').onsubmit=async e=>{e.preventDefault();try{await api('POST','/api/requests',form(e.target));msg('#reqMsg','Request sent.',1);loadReqs()}catch(x){msg('#reqMsg',x.message)}};
