@@ -13,13 +13,15 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority; impor
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder; import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain; import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.filter.OncePerRequestFilter; import org.springframework.web.cors.*;
-import java.io.IOException; import java.util.List;
+import org.springframework.beans.factory.annotation.Value;
+import java.io.IOException; import java.util.Arrays; import java.util.List;
 @Configuration
 public class SecurityConfig {
+  @Value("${app.cors.allowed-origins:*}") String[] allowedOrigins;
   @Bean PasswordEncoder enc(){ return new BCryptPasswordEncoder(); }
   @Bean CorsConfigurationSource corsConfigurationSource(){
     CorsConfiguration c = new CorsConfiguration();
-    c.setAllowedOriginPatterns(List.of("*"));
+    c.setAllowedOriginPatterns(Arrays.asList(allowedOrigins));
     c.setAllowedMethods(List.of("GET","POST","PUT","DELETE","OPTIONS"));
     c.setAllowedHeaders(List.of("*"));
     c.setAllowCredentials(true);
