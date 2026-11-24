@@ -12,10 +12,21 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority; import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder; import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain; import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.filter.OncePerRequestFilter; import java.io.IOException; import java.util.List;
+import org.springframework.web.filter.OncePerRequestFilter; import org.springframework.web.cors.*;
+import java.io.IOException; import java.util.List;
 @Configuration
 public class SecurityConfig {
   @Bean PasswordEncoder enc(){ return new BCryptPasswordEncoder(); }
+  @Bean CorsConfigurationSource corsConfigurationSource(){
+    CorsConfiguration c = new CorsConfiguration();
+    c.setAllowedOriginPatterns(List.of("*"));
+    c.setAllowedMethods(List.of("GET","POST","PUT","DELETE","OPTIONS"));
+    c.setAllowedHeaders(List.of("*"));
+    c.setAllowCredentials(true);
+    UrlBasedCorsConfigurationSource s = new UrlBasedCorsConfigurationSource();
+    s.registerCorsConfiguration("/**", c);
+    return s;
+  }
   @Bean SecurityFilterChain chain(HttpSecurity http, Jwt jwt) throws Exception {
     OncePerRequestFilter f = new OncePerRequestFilter(){
       protected void doFilterInternal(HttpServletRequest rq, HttpServletResponse rs, FilterChain c) throws ServletException, IOException {
@@ -27,8 +38,11 @@ public class SecurityConfig {
         } catch (Exception ignored) {}
         c.doFilter(rq, rs);
       } };
-    return http.csrf(x->x.disable()).sessionManagement(s->s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-      .authorizeHttpRequests(a->a.requestMatchers("/","/index.html","/api/auth/**").permitAll()
+    return http.cors(c->c.configurationSource(corsConfigurationSource())).csrf(x->x.disable()).sessionManagement(s->s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+      .authorizeHttpRequests(a->a.requestMatchers(
+          "/", "/index.html", "/inventory.html", "/drives.html", "/account.html",
+          "/donor.html", "/hospital.html", "/admin.html", "/user.html", "/about.html",
+          "/app.css", "/app.js", "/favicon.ico", "/api/auth/**").permitAll()
         .requestMatchers("/ws").permitAll().requestMatchers(HttpMethod.GET,"/api/inventory/search","/api/inventory/summary","/api/drives").permitAll()
         .requestMatchers("/api/admin/**","/api/appointments/*/complete","/api/appointments/all").hasRole("ADMIN")
         .requestMatchers("/api/requests").hasAnyRole("HOSPITAL","ADMIN")
